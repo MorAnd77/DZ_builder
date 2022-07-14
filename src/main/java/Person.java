@@ -63,6 +63,20 @@ public class Person {
                 '}';
     }
 
+    @Override
+    public int hashCode() {
+        int result = 31;
+        result = result * 17 + getName().hashCode();
+        result = result * 17 + getSurname().hashCode();
+        if(hasAge()) {
+            result = result * 17 + getAge().getAsInt();
+        }
+        if(hasAddress()) {
+            result = result * 17 + getAddress().hashCode();
+        }
+        return result;
+    }
+
     public PersonBuilder newChildBuilder() {
         PersonBuilder childBuilder = new PersonBuilder();
         childBuilder.setSurname(getSurname());
